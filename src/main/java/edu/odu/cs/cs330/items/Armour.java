@@ -47,6 +47,14 @@ public class Armour extends Item {
     public Armour()
     {
         // Initialize all data members (including those inherited from Item)
+        super("", false);
+
+        this.durability = 0;
+        this.defense = 0;
+        this.material = "";
+        this.modifier = "";
+        this.modiferLevel = 0;
+        this.element = "";
     }
 
     /**
@@ -57,6 +65,14 @@ public class Armour extends Item {
     public Armour(Armour src)
     {
         // Set and/or copy data members for *this* object based on *src*.
+        super(src.name, false);
+
+        this.durability = src.durability;
+        this.defense = src.defense;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modiferLevel = src.modiferLevel;
+        this.element = src.element;
     }
 
     /**
@@ -192,6 +208,12 @@ public class Armour extends Item {
         super.name   = snr.next();
 
         // Complete this method
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        this.modiferLevel = snr.nextInt();
+        this.element = snr.next();
     }
 
     /**
@@ -201,7 +223,7 @@ public class Armour extends Item {
     public Item clone()
     {
         // Replace the next line
-        return null;
+        return new Armour(this);
     }
 
     /**
@@ -210,7 +232,12 @@ public class Armour extends Item {
     @Override
     public String toString()
     {
-        return "Implement This Function";
+        return String.format("  Nme: %s%n", this.name)
+            + String.format("  Dur: %d%n", this.durability)
+            + String.format("  Def: %d%n", this.defense)
+            + String.format("  Mtl: %s%n", this.material)
+            + String.format("  Mdr: %s (Lvl %d)%n", this.modifier, this.modiferLevel)
+            + String.format("  Emt: %s%n", this.element);
     }
 }
 
